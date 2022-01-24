@@ -84,13 +84,30 @@ public class EmployeePayrollServiceMain {
 		List<EmployeePayrollDetails> employeePayrollDataList = employeePayrollDBService.getEmployeePayrollData(name);
 		return employeePayrollDataList.get(0).equals(getEmployeePayrollData(name));
 	}
+	
+	public List<EmployeePayrollDetails> getEmployeeDetailsBasedOnStartDate(IOService ioService, String startDate) {
+		if(ioService.equals(IOService.DB_IO))
+			this.employeePayrollList = employeePayrollDBService.getEmployeeDetailsBasedOnStartDateUsingStatement(startDate);
+		return this.employeePayrollList;
+	}
+
+	public List<EmployeePayrollDetails> getEmployeeDetailsBasedOnStartDateUsingPreparedStatement(IOService ioService, String startDate) {
+		if(ioService.equals(IOService.DB_IO))
+			this.employeePayrollList = employeePayrollDBService.getEmployeeDetailsBasedOnStartDateUsingPreparedStatement(startDate);
+		return this.employeePayrollList;
+	}
+	
+	public List<EmployeePayrollDetails> getEmployeeDetailsBasedOnName(IOService ioService, String name) {
+		if(ioService.equals(IOService.DB_IO))
+			this.employeePayrollList = employeePayrollDBService.getEmployeeDetailsBasedOnNameUsingStatement(name);
+		return this.employeePayrollList;
+	}
 
 	public static void main(String[] args) {
 		System.out.println("---------- Welcome To Employee Payroll Application ----------\n");
 		ArrayList<EmployeePayrollDetails> employeePayrollList  = new ArrayList<EmployeePayrollDetails>();
 		EmployeePayrollServiceMain employeePayrollService = new EmployeePayrollServiceMain(employeePayrollList);
 		Scanner consoleInputReader = new Scanner(System.in);
-		
 		employeePayrollService.readEmployeePayrollData(consoleInputReader);
 		employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);		
 	}
