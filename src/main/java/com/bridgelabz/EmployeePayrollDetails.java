@@ -9,11 +9,11 @@ public class EmployeePayrollDetails {
 	public LocalDate startDate;
 
 	public EmployeePayrollDetails(Integer id, String name, Double salary) {
-
 		this.employeeId = id;
 		this.employeeName = name;
 		this.employeeSalary = salary;
 	}
+	
 	public EmployeePayrollDetails(Integer id, String name, Double salary, LocalDate startDate) {
 		this(id,name,salary);
 		this.startDate = startDate;
@@ -21,9 +21,9 @@ public class EmployeePayrollDetails {
 
 	@Override
 	public String toString() {
-
 		return "EmployeeId: "+employeeId+", EmployeeName: "+employeeName+", EmployeeSalary: "+employeeSalary;
 	}
+	
 	@Override
 	public boolean equals(Object object) {
 		if(this == object)

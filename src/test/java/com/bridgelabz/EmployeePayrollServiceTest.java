@@ -8,14 +8,14 @@ import org.junit.Test;
 import com.bridgelabz.EmployeePayrollServiceMain.IOService;
 
 public class EmployeePayrollServiceTest {
+	
 	@Test
-	public void given3Employees_WhenWrittenToFile_ShouldMatchEmployeeEntries()
-	{
+	public void given3Employees_WhenWrittenToFile_ShouldMatchEmployeeEntries() {
 		EmployeePayrollDetails[] arrayOfEmployees = {
 				new EmployeePayrollDetails(1, "Jeff Bezos", 100000.0, LocalDate.now()),
 				new EmployeePayrollDetails(2, "Bill Gates", 200000.0, LocalDate.now()),
-				new EmployeePayrollDetails(3, "Mark Zuckerberg", 300000.0, LocalDate.now())
-		};
+				new EmployeePayrollDetails(3, "Mark Zuckerberg", 300000.0, LocalDate.now())};
+		
 		EmployeePayrollServiceMain employeePayrollService;
 		employeePayrollService = new EmployeePayrollServiceMain(Arrays.asList(arrayOfEmployees));
 		employeePayrollService.writeEmployeePayrollData(IOService.FILE_IO);
@@ -23,9 +23,8 @@ public class EmployeePayrollServiceTest {
 		employeePayrollService.printData(IOService.FILE_IO);
 		long entries = employeePayrollService.countEntries(IOService.FILE_IO);
 		Assert.assertEquals(3, entries);
-
 	}
-
+	
 	@Test
 	public void givenFile_WhenRead_ShouldReturnNumberOfEntries() {
 		EmployeePayrollServiceMain employeePayrollService = new EmployeePayrollServiceMain();
@@ -41,6 +40,7 @@ public class EmployeePayrollServiceTest {
 		System.out.println(employeePayrollData.size());
 		Assert.assertEquals(4, employeePayrollData.size());
 	}
+	
 	@Test 
 	public void givenNewSalaryForEmployee_WhenUpdated_ShouldSyncWithDB() {
 

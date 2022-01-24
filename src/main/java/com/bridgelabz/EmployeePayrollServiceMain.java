@@ -1,6 +1,5 @@
 package com.bridgelabz;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,7 +31,6 @@ public class EmployeePayrollServiceMain {
 	}
 	
 	private void readEmployeePayrollData(Scanner consoleInputReader) {
-
 		System.out.println("Enter the Employee Id : ");
 		int id = consoleInputReader.nextInt();
 		System.out.println("Enter the Employee Name : ");
@@ -50,18 +48,15 @@ public class EmployeePayrollServiceMain {
 	}
 	
 	public long readDataFromFile(IOService fileIo) {
-
 		List<String> employeePayrollFromFile = new ArrayList<String>();
 		if(fileIo.equals(IOService.FILE_IO)) {
 			System.out.println("Employee Details from payroll-file.txt");
 			employeePayrollFromFile = new EmployeePayrollServiceIO().readDataFromFile();
-			
 		}
 		return employeePayrollFromFile.size();
 	}
 	
 	public List<EmployeePayrollDetails> readEmployeePayrollData(IOService ioService) {
-
 		if(ioService.equals(IOService.DB_IO))
 			this.employeePayrollList = employeePayrollDBService.readData();
 		return this.employeePayrollList;
@@ -76,7 +71,6 @@ public class EmployeePayrollServiceMain {
 	}	
 
 	public void updateEmployeeSalary(String name, double salary) {
-
 		int result = employeePayrollDBService.updateEmployeeData(name,salary);
 		if(result == 0) 
 			return;
@@ -84,17 +78,14 @@ public class EmployeePayrollServiceMain {
 		EmployeePayrollDetails employeePayrollData = this.getEmployeePayrollData(name);
 		if(employeePayrollData != null)
 			employeePayrollData.employeeSalary = salary;
-
 	}
 
 	public boolean checkEmployeePayrollInSyncWithDB(String name) {
-
 		List<EmployeePayrollDetails> employeePayrollDataList = employeePayrollDBService.getEmployeePayrollData(name);
 		return employeePayrollDataList.get(0).equals(getEmployeePayrollData(name));
 	}
 
 	public static void main(String[] args) {
-
 		System.out.println("---------- Welcome To Employee Payroll Application ----------\n");
 		ArrayList<EmployeePayrollDetails> employeePayrollList  = new ArrayList<EmployeePayrollDetails>();
 		EmployeePayrollServiceMain employeePayrollService = new EmployeePayrollServiceMain(employeePayrollList);
