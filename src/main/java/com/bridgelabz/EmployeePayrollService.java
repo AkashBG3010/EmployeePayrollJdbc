@@ -40,6 +40,18 @@ public class EmployeePayrollService {
 				employeePayrollList.add(new EmployeePayrollDetails(id, name, basicSalary, startDate));
 			}
 		}
+//		try (Connection connection = getConnection();){
+//			java.sql.Statement statement = connection.createStatement();
+//			ResultSet resultSet = statement.executeQuery(sqlStatement);
+//
+//			while(resultSet.next()) {
+//				int id = resultSet.getInt("emp_id");
+//				String name = resultSet.getString("emp_name");
+//				double basicSalary = resultSet.getDouble("basic_pay");
+//				LocalDate startDate = resultSet.getDate("start").toLocalDate();
+//				employeePayrollList.add(new EmployeePayrollDetails(id, name, basicSalary, startDate));
+//			}
+//		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
